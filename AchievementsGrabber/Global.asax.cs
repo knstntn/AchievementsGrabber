@@ -13,7 +13,7 @@ namespace AchievementsGrabber
 			GlobalFilters.Filters.Add(new HandleErrorAttribute());
 
 			RouteTable.Routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-			RouteTable.Routes.MapRoute("Default", "{controller}/{action}/{id}", new {controller = "Home", action = "Index", id = UrlParameter.Optional});
+			RouteTable.Routes.MapRoute("Default", "{controller}/{action}/{id}", new { controller = "Default", action = "Index", id = UrlParameter.Optional });
 		}
 	}
 }
