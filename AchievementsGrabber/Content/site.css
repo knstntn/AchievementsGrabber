@@ -69,7 +69,7 @@ body.normal {
 		margin-right: auto;
 	}
 
-	.left-sidebar-narrow .pointer {
+	.left-sidebar-narrow .sign {
 		font-size: 25px;
 	}
 
@@ -100,3 +100,12 @@ body.normal {
 		.left-sidebar-wide .row a, .left-sidebar-wide .row a:hover, .left-sidebar-wide .row a:focus {
 			color: lightblue;
 		}
+
+a.as-body, a.as-body:hover, a.as-body:focus {
+	color: #333333;
+}
+.scrollable {
+	max-height: 750px;
+	overflow-x: hidden;
+	overflow-y: auto;
+}

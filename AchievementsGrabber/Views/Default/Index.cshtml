@@ -15,33 +15,11 @@
 <html>
 	<head>
 		<title>Games search</title>
-	
-		<link rel="stylesheet" href="@Url.Content("~/Content/bootstrap.css")"/>
-		<link rel="stylesheet" href="@Url.Content("~/Content/bootstrap-responsive.css")"/>
-		<link rel="stylesheet" href="@Url.Content("~/Content/font-awesome.css")"/>
-		<link rel="stylesheet" href="@Url.Content("~/Content/site.css")"/>
-		
-		<script type="text/javascript" src="@Url.Content("~/Scripts/jquery-2.0.3.js")"></script>
-		<script type="text/javascript" src="@Url.Content("~/Scripts/jquery-ui-1.10.3.js")"></script>
-		<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
-		<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
-		<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.hooks.js")"></script>
-		<script type="text/javascript" src="@Url.Content("~/Scripts/bootstrap.js")"></script>
+		@Html.Partial("Shared/Meta")
 	</head>
 	<body class="@cssForBody">
-		<div class="left-sidebar-narrow">
-			<div class="row text-center">
-				<i class="icon-gears pointer"></i>
-			</div>
-		</div>
-		<div class="left-sidebar-wide">
-			<div class="row">
-				<h3>Disclaimer</h3>
-				<p>Information for this application is taken from <a href="http://www.xbox360achievements.org/" target="_blank">www.xbox360achievements.org/</a></p>
-				<p>Not for sale, rent or ebay. This app is created just for fun.</p>
-			</div>
-		</div>
-
+		@Html.Partial("Shared/Navigation")
+		
 		<div class="container">
 			<div class="row">
 				<div class="span8 centrify">
@@ -78,16 +56,6 @@
 							});
 						});
 					}
-				});
-				
-				// adding information
-				$('.left-sidebar-narrow').mouseenter(function () {
-					$(this).hide('slide', { direction: 'left' }, 200);
-					$('.left-sidebar-wide').show('slide', { direction: 'left' }, 300);
-				});
-				$('.left-sidebar-wide').mouseleave(function() {
-					$(this).hide('slide', { direction: 'left' }, 200);
-					$('.left-sidebar-narrow').show('slide', { direction: 'left' }, 200);
 				});
 			});
 		</script>

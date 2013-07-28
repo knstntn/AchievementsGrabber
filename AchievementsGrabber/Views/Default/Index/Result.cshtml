@@ -21,13 +21,15 @@ else
 				<tr>
 					<td>
 						<img alt="-" src="@game.Image" class="img-rounded">
-						<strong style="margin-left: 20px;">@game.Text</strong>
+						<a href="@Url.Action("Details", new {url = @game.Url})">
+							<strong style="margin-left: 20px;">@game.Text</strong>
+						</a>
 					</td>
 					<td style="line-height: 64px;">
 						@if (siblings.Length > 1)
 						{
 							<div class="pull-right">
-								<a class="btn btn-link no-decoration">
+								<a class="btn btn-link no-decoration as-body">
 									@siblings.Length.ToString(CultureInfo.InvariantCulture)
 									<i class='icon-chevron-down'></i>
 								</a>

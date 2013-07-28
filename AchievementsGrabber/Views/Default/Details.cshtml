@@ -1,0 +1,27 @@
+﻿@using AchievementsGrabber.Common.Extensions
+@model AchievementsGrabber.Model.Default.DetailsModel
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>@Model.Name</title>
+		@Html.Partial("Shared/Meta")
+	</head>
+	<body>
+		@Html.Partial("Shared/Navigation")
+		<div class="container">
+			<div class="span12">
+				<div class="row">
+					<div class="page-header"><h1>@Model.Name</h1></div>	
+				</div>
+				<div class="row">
+					@Html.Partial("Details/Achievements", Model.Achievements.Safe())
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

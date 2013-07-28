@@ -97,7 +97,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\InputPatterns.cs" />
+    <Compile Include="Common\Extensions\Class1.cs" />
+    <Compile Include="Controllers\DefaultController.Details.cs" />
+    <Compile Include="Model\InputPatterns.cs" />
     <Compile Include="Common\Extensions\HtmlParsingExtensions.cs" />
     <Compile Include="Common\XpathBuilder.cs" />
     <Compile Include="Common\Extensions\XpathBuilderExtensions.cs" />
@@ -108,8 +110,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Model\Default\DetailsModel.cs" />
     <Compile Include="Model\Default\ResultModel.cs" />
-    <Compile Include="Model\IXpathBuilderProvider.cs" />
+    <Compile Include="Common\IXpathBuilderProvider.cs" />
     <Compile Include="Model\UriContext.cs" />
     <Compile Include="Model\Default\SearchModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -218,6 +221,10 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Default\Index\Search.cshtml" />
     <Content Include="Views\Default\Index\Result.cshtml" />
+    <Content Include="Views\Default\Details.cshtml" />
+    <Content Include="Views\Default\Shared\Navigation.cshtml" />
+    <Content Include="Views\Default\Shared\Meta.cshtml" />
+    <Content Include="Views\Default\Details\Achievements.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

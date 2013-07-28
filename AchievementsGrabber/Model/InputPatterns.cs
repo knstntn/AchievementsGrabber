@@ -1,4 +1,4 @@
-﻿namespace AchievementsGrabber.Common
+﻿namespace AchievementsGrabber.Model
 {
 	public static class InputPatterns
 	{

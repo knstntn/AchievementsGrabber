@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Web.Mvc;
+using AchievementsGrabber.Common;
 using AchievementsGrabber.Common.Extensions;
-using AchievementsGrabber.Model;
 using AchievementsGrabber.Model.Default;
 
 namespace AchievementsGrabber.Controllers
 {
-	public class DefaultController : Controller, IXpathBuilderProvider
+	public sealed partial class DefaultController : Controller, IXpathBuilderProvider
 	{
 		private static readonly Uri BaseUri = new Uri("http://www.xbox360achievements.org/");
 

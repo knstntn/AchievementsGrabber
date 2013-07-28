@@ -1,0 +1,28 @@
+﻿@using AchievementsGrabber.Common.Extensions
+@model IEnumerable<AchievementsGrabber.Model.Default.AchievementModel>
+
+<h2>Achievements</h2>
+<div class="scrollable">
+	<table class="table table-hover">
+		<tbody>
+			@foreach (var x in Model.Safe())
+			{
+				<tr>
+					<td style="width: 70px;" class="text-center">
+						<img alt="" src="@x.Image" class="img-rounded">
+					</td>
+					<td>
+						<strong>
+							@x.Title
+							@if (x.IsSecret)
+							{
+								<i class="icon-lock"></i>
+							}
+						</strong>
+						<p>@x.Description</p>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>

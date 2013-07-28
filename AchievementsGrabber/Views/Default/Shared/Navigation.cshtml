@@ -1,0 +1,27 @@
+﻿<div class="left-sidebar-narrow">
+	<div class="row text-center">
+		<p><a href="@Url.Action("Index")" class="no-decoration"><i class="icon-home sign"></i></a></p>
+		<p><a href="javascript:void(0)" class="no-decoration"><i class="icon-ellipsis-horizontal sign"></i></a></p>
+	</div>
+</div>
+<div class="left-sidebar-wide">
+	<div class="row">
+		<h3>Disclaimer</h3>
+		<p>Information for this application is taken from <a href="http://www.xbox360achievements.org/" target="_blank">www.xbox360achievements.org/</a></p>
+		<p>Not for sale, rent or ebay. This app is created just for fun.</p>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		// adding information
+		$('.left-sidebar-narrow .icon-ellipsis-horizontal').click(function() {
+			$('.left-sidebar-narrow').hide('slide', { direction: 'left' }, 200);
+			$('.left-sidebar-wide').show('slide', { direction: 'left' }, 300);
+		});
+		$('.left-sidebar-wide').mouseleave(function() {
+			$('.left-sidebar-wide').hide('slide', { direction: 'left' }, 200);
+			$('.left-sidebar-narrow').show('slide', { direction: 'left' }, 200);
+		});
+	});
+</script>
