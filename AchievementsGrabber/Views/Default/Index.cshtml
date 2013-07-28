@@ -1,16 +1,95 @@
-﻿@{
+﻿@using AchievementsGrabber.Model.Default
+@model ResultModel
+
+@{
     Layout = null;
+
+	var search = ((SearchModel) ViewBag.Search) ?? new SearchModel();
+	
+	var cssForBody = search.InSearch ? "normal" : "long";
+	var cssForSearch = search.InSearch ? "pull-right" : "text-center";
 }
 
 <!DOCTYPE html>
 
 <html>
-<head>
-    <title>Index</title>
-</head>
-<body>
-    <div>
-        Content will be here
-    </div>
-</body>
+	<head>
+		<title>Games search</title>
+	
+		<link rel="stylesheet" href="@Url.Content("~/Content/bootstrap.css")"/>
+		<link rel="stylesheet" href="@Url.Content("~/Content/bootstrap-responsive.css")"/>
+		<link rel="stylesheet" href="@Url.Content("~/Content/font-awesome.css")"/>
+		<link rel="stylesheet" href="@Url.Content("~/Content/site.css")"/>
+		
+		<script type="text/javascript" src="@Url.Content("~/Scripts/jquery-2.0.3.js")"></script>
+		<script type="text/javascript" src="@Url.Content("~/Scripts/jquery-ui-1.10.3.js")"></script>
+		<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.js")"></script>
+		<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")"></script>
+		<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.validate.hooks.js")"></script>
+		<script type="text/javascript" src="@Url.Content("~/Scripts/bootstrap.js")"></script>
+	</head>
+	<body class="@cssForBody">
+		<div class="left-sidebar-narrow">
+			<div class="row text-center">
+				<i class="icon-gears pointer"></i>
+			</div>
+		</div>
+		<div class="left-sidebar-wide">
+			<div class="row">
+				<h3>Disclaimer</h3>
+				<p>Information for this application is taken from <a href="http://www.xbox360achievements.org/" target="_blank">www.xbox360achievements.org/</a></p>
+				<p>Not for sale, rent or ebay. This app is created just for fun.</p>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="span8 centrify">
+					<div class="@cssForSearch">
+						@Html.Partial("Index/Search", search)
+					</div>
+				</div>
+			</div>
+			@if (search.InSearch)
+			{
+				<div class="row">
+					<div class="span8 centrify">
+						@Html.Partial("Index/Result", Model)
+					</div>
+				</div>
+			}
+		</div>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {
+				// attaching hooks for jQuery validation
+				$('form.form-search').addTriggersToJqueryValidate().triggerElementValidationsOnFormValidation();
+				$('form.form-search').formValidation(function(element, result) {
+					$(element).find('.control-group').removeClass('error');
+					if (!result) {
+						$(element).find('.input-validation-error').each(function() {
+							var group = $(this).closest('.control-group').addClass('error');
+							var txt = group.find('.field-validation-error').text();
+
+							$(this).popover({ content: txt });
+							$(this).popover('show').click(function(e) {
+								$(this).popover('toggle');
+								e.stopPropagation();
+							});
+						});
+					}
+				});
+				
+				// adding information
+				$('.left-sidebar-narrow').mouseenter(function () {
+					$(this).hide('slide', { direction: 'left' }, 200);
+					$('.left-sidebar-wide').show('slide', { direction: 'left' }, 300);
+				});
+				$('.left-sidebar-wide').mouseleave(function() {
+					$(this).hide('slide', { direction: 'left' }, 200);
+					$('.left-sidebar-narrow').show('slide', { direction: 'left' }, 200);
+				});
+			});
+		</script>
+	</body>
 </html>

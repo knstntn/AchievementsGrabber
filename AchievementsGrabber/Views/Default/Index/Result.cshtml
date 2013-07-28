@@ -1,0 +1,51 @@
+﻿@using System.Globalization
+@using AchievementsGrabber.Common.Extensions
+@model AchievementsGrabber.Model.Default.ResultModel
+		   
+@{
+	var games = Model.Games.Safe().ToArray();
+	var msg = Model.Error.Either(games.Length == 0 ? "No games found." : "");
+	var index = 0;
+}
+@if (!string.IsNullOrWhiteSpace(msg))
+{
+	<div class="alert text-center">@msg</div>
+}
+else
+{
+	<div class="page-header">
+		<h3>Games</h3>
+	</div>
+	<table class="table table-hover">
+		<tbody>
+			@foreach (var game in games)
+			{
+				var css = index == 0 ? "no-border" : "";
+				var siblings = game.Siblings.Safe().ToArray();
+				<tr>
+					<td class="@css">
+						<img alt="-" src="@game.Image" class="img-rounded">
+						<strong style="margin-left: 20px;">@game.Text</strong>
+					</td>
+					<td class="@css" style="line-height: 64px;">
+						@if (siblings.Length > 1)
+						{
+							<div class="pull-right">
+								<a class="btn btn-link no-decoration">
+									@siblings.Length.ToString(CultureInfo.InvariantCulture)
+									<i class='icon-chevron-down'></i>
+								</a>
+							</div>
+						}
+					</td>
+				</tr>
+				index++;
+
+				if (siblings.Length > 1)
+				{
+					
+				}
+			}
+		</tbody>
+	</table>
+}

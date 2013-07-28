@@ -1,0 +1,102 @@
+﻿html {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body.long {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+	body.long .container {
+		height: 100%;
+		display: table;
+		width: 100%;
+	}
+
+	body.long .row {
+		height: 100%;
+		display: table-cell;
+		vertical-align: middle;
+	}
+
+	body.long input.input-large {
+		height: 40px;
+		width: 500px;
+	}
+
+	body.long button.btn-large {
+		height: 50px;
+	}
+
+body.normal {
+	margin: 5px;
+	padding: 0;
+}
+
+.centrify {
+	margin-left: auto;
+	margin-right: auto;
+	float: none;
+}
+
+.no-border {
+	border: none!important;
+}
+
+.no-decoration, .no-decoration:hover, .no-decoration:focus {
+	text-decoration: none;
+}
+
+.left-sidebar-narrow {
+	position: fixed;
+	top: 0;
+	left: 0px;
+	height: 100%;
+	width: 65px;
+	background-color: #F5F5F5;
+	display: table;
+	cursor: pointer;
+}
+
+	.left-sidebar-narrow .row {
+		height: 100%;
+		display: table-cell;
+		vertical-align: middle;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.left-sidebar-narrow .pointer {
+		font-size: 25px;
+	}
+
+.left-sidebar-wide {
+	position: fixed;
+	top: 0;
+	left: 0px;
+	height: 100%;
+	width: 240px;
+	background-color: #000000;
+	color: #fff;
+	display: none;
+}
+
+	.left-sidebar-wide .row {
+		margin: 0;
+		padding: 5px;
+	}
+
+		.left-sidebar-wide .row h3 {
+			font-size: 20px;
+		}
+
+		.left-sidebar-wide .row p {
+			font-size: 12px;
+		}
+
+		.left-sidebar-wide .row a, .left-sidebar-wide .row a:hover, .left-sidebar-wide .row a:focus {
+			color: lightblue;
+		}
