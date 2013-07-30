@@ -97,7 +97,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common\Extensions\Class1.cs" />
+    <Compile Include="Common\Extensions\ConvertExtensions.cs" />
     <Compile Include="Controllers\DefaultController.Details.cs" />
     <Compile Include="Model\InputPatterns.cs" />
     <Compile Include="Common\Extensions\HtmlParsingExtensions.cs" />
