@@ -1,0 +1,142 @@
+﻿@using AchievementsGrabber.Common.Extensions
+@model AchievementsGrabber.Model.Default.DetailsModel
+
+@{
+    Layout = "Master.cshtml";
+    ViewBag.Title = Model.Name;
+    ViewBag.Subtitle = "Games list";
+
+    var index = 0;
+    var images = Model.Images.Safe().ToList();
+    var achievements = Model.Achievements.Safe().ToList();
+}
+<style type="text/css">
+       .carousel-loader {
+            background: url('@Url.Content("~/Content/common/img/ajax-loader.gif")') no-repeat center center;
+       }
+    </style>
+
+<div class="content-details" style="height: 75px; vertical-align: top;">
+    <h1>@Model.Name</h1>
+</div>
+<div class="content-details" style="height: 500px;">
+    @if (Model.Overview != null)
+    {
+        <div class="overview">
+            <div class="content-header">
+                <div class="header-inner">
+                    <h2 class="js-timeline-title">Overview</h2>
+                </div>
+            </div>
+            <div class="content-middle">
+                <table style="width: 100%">
+                    <tr>
+                        <td>@Html.Raw(Model.Overview.Description)</td>
+                        <td style="width: 121px; vertical-align: top;">
+                            @if (!string.IsNullOrEmpty(Model.Overview.Image))
+                            {
+                                <img src="@Model.Overview.Image" alt='-' style="width: 120px;" />
+                            }
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    }
+    @if (images.Count > 0)
+    {
+        <div id="myCarousel" class="carousel slide">
+            <div class="carousel-inner">
+                @foreach (var x in images)
+                {
+                    var active = index == 0 ? "active" : "";
+                    <div class="item @active">
+                        <img src="@x" class="game-screen" style="display: none;" width="850" height="480" alt="-"/>
+                        <div class="carousel-loader"></div>
+                    </div>
+                    index++;
+                }
+            </div>
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">&rsaquo;</a>
+        </div>
+    }
+</div>
+<div class="content-details" style="height: 850px;">
+    @if (achievements.Count > 0)
+    {
+        <div class="content-header">
+            <div class="header-inner">
+                <h2 class="js-timeline-title">Achievements</h2>
+            </div>
+        </div>
+        <div style="max-height: 750px; height: 750px; overflow-y: auto; overflow-x: hidden">
+            <div class="stream">
+                <div class="stream-items">
+                    @foreach (var x in Model.Achievements.Safe())
+                    {
+                        <div class="stream-item stream-item">
+                            <div class="tweet no-line">
+                                <input type="hidden" value="@x.Id" class="id-container" />
+                                <div class="content">
+                                    <div class="stream-item-header">
+                                        @if (!string.IsNullOrEmpty(x.Image))
+                                        {
+                                            <img alt="-" src="@x.Image" class="avatar-large" />
+                                        }
+                                        <strong class="fullname">@x.Title</strong>
+                                        @if (x.IsSecret)
+                                        {
+                                            <i class="icon-gift" data-original-title="Secret achievement"></i>
+                                        }
+                                        @if (x.Points.HasValue)
+                                        {
+                                            <span class="pull-right" style="font-weight: bold">
+                                                @x.Points
+                                                <img src="@Url.Content("~/Content/common/img/gp-g.png")"/>
+                                            </span>
+                                        }
+                                    </div>
+                                    @if (!string.IsNullOrEmpty(x.Guide))
+                                    {
+                                        <span style="float: right;" class="expand-games"><i class='icon-chevron-down'></i></span>
+                                    }
+                                    <p>@x.Description</p>
+                                </div>
+                            </div>
+                        </div>
+                        if (!string.IsNullOrEmpty(x.Guide))
+                        {
+                            <div class="stream-item stream-item tweet-guide-@x.Id" style="display: none;">
+                                <div class="tweet no-line">
+                                    <div class="content">
+                                        <p>@Html.Raw(x.Guide)</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#myCarousel').carousel();
+        $('img').load(function () {
+            $(this).show().parent().find('.carousel-loader').hide();
+        });
+        $('.expand-games').click(function () {
+            var icon = $(this).find('i');
+
+            var id = icon.closest('.tweet').find('input:hidden.id-container').val();
+            $('.tweet-guide-' + id).slideToggle('fast');
+            
+            if (icon.hasClass('icon-chevron-down')) icon.removeClass('icon-chevron-down').addClass('icon-chevron-up');
+            else if (icon.hasClass('icon-chevron-up')) icon.removeClass('icon-chevron-up').addClass('icon-chevron-down');
+        });
+        $('.icon-gift').tooltip();
+    });
+</script>

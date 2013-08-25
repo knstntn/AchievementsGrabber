@@ -225,6 +225,7 @@
     <Content Include="Views\Default\Shared\Navigation.cshtml" />
     <Content Include="Views\Default\Shared\Meta.cshtml" />
     <Content Include="Views\Default\Details\Achievements.cshtml" />
+    <Content Include="Views\Default\_DetailsOriginal.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
