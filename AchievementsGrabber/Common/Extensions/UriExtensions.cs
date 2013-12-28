@@ -88,7 +88,7 @@ namespace AchievementsGrabber.Common.Extensions
 					// TODO: pass those via context
 					client.Headers.Add(HttpRequestHeader.Accept, "text/html,application/xhtml+xml,application/xml");
 					client.Headers.Add(HttpRequestHeader.AcceptLanguage, "en-US,en;q=0.5");
-					client.Headers.Add(HttpRequestHeader.Referer, "http://www.xbox360achievements.org/search.php");
+					client.Headers.Add(HttpRequestHeader.Referer, "http://www.xboxachievements.com/search.php");
 					client.Headers.Add(HttpRequestHeader.ContentType, "application/x-www-form-urlencoded");
 				}
 

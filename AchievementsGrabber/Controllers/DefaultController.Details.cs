@@ -57,10 +57,10 @@ namespace AchievementsGrabber.Controllers
 
 				Debug.Assert(cells.Length == 2);
 
-				var img = cells[1].Attributes("img", "src").FirstOrDefault().Get(x => x.Value);
+				var img = cells[0].Attributes("img", "src").FirstOrDefault().Get(x => x.Value);
 				return new OverviewModel
 				{
-					Description = cells[0].InnerHtml,
+					Description = cells[1].InnerHtml,
 					Image = img != null ? baseuri.Combine(img).AbsoluteUri : ""
 				};
 			}
@@ -72,9 +72,8 @@ namespace AchievementsGrabber.Controllers
 			// TODO: implement this correctly
 			var xpath = provider.Builder()
 			                    .Any("div").WithAttribute("id", "cont")
-			                    .Any("div").WithAttribute("class", "bl_la_main")
-			                    .Child("div").WithAttribute("class", "divtext")
-			                    .Child("table").Child("tr");
+			                    .Any("table").WithAttribute("id", "dataTable")
+			                    .Child("tr");
 
 			var list = game.Select(xpath.ToString()).Safe().Skip(3).ToList()
 			               .Select((x, i) => new {Index = i, Row = x})
@@ -91,7 +90,7 @@ namespace AchievementsGrabber.Controllers
 				        Description = item.Second.Single("td[@class='ac3']").Get(x => x.InnerText),
 				        IsSecret = item.First.Attributes["class"].Get(x => x.Value).Safe().Contains("secret"),
 				        Guide = item.Third.Single("td[@class='ac6']").Get(x => x.InnerHtml),
-			        }).ToList();
+			        }).Where(x => !string.IsNullOrWhiteSpace(x.Title)).ToList();
 		}
 	}
 }

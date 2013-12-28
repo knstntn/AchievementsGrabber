@@ -11,7 +11,7 @@ namespace AchievementsGrabber.Controllers
 {
 	public sealed partial class DefaultController : Controller, IXpathBuilderProvider
 	{
-		private static readonly Uri BaseUri = new Uri("http://www.xbox360achievements.org/");
+		private static readonly Uri BaseUri = new Uri("http://www.xboxachievements.com");
 
 		[HttpGet]
 		public ActionResult Index(SearchModel model)
